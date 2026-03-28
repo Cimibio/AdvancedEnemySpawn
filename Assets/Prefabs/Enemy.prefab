@@ -14,6 +14,9 @@ GameObject:
   - component: {fileID: 6862301856039288861}
   - component: {fileID: 2688728831414582595}
   - component: {fileID: 1811578214516313898}
+  - component: {fileID: 5761335148818487021}
+  - component: {fileID: 447452631122855514}
+  - component: {fileID: -8951511813094215609}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -121,8 +124,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e89134ac3d211494ab7fbca216d90e7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 1
-  _fallThreshold: -1
 --- !u!54 &1811578214516313898
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,3 +151,42 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 0
+--- !u!114 &5761335148818487021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616020006990822631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2ab29ad9fa4c94ab8c46cebfe2ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1
+--- !u!114 &447452631122855514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616020006990822631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc29c25c590571249827e77d531e4b75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fallThreshold: -1
+--- !u!114 &-8951511813094215609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616020006990822631}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2ab29ad9fa4c94ab8c46cebfe2ce6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _speed: 1

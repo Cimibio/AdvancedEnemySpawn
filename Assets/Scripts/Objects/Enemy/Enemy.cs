@@ -1,17 +1,18 @@
 using System;
 using UnityEngine;
 
-[RequireComponent(typeof(EnemyMover), typeof(EnemyFallDetector))]
+[RequireComponent(typeof(Mover), typeof(EnemyFallDetector))]
 public class Enemy : MonoBehaviour
 {
-    private EnemyMover _enemyMover;
+    private Mover _enemyMover;
     private EnemyFallDetector _fallDetector;
+    private Color _color;
 
     public event Action<Enemy> Falled;
 
     private void Awake()
     {
-        _enemyMover = GetComponent<EnemyMover>();
+        _enemyMover = GetComponent<Mover>();
         _fallDetector = GetComponent<EnemyFallDetector>();
 
         _fallDetector.OnFall += HandleFall;
