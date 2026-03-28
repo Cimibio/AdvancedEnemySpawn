@@ -5,7 +5,7 @@ public class TargetGenerator : MonoBehaviour
     [SerializeField] private RoutesGenerator _routesGenerator;
     [SerializeField] private Target _targetPrefab;
 
-    private int _spawnPointNumber = 0;
+    private int _spawnPositionNumber = 0;
 
     public Target Spawn(Color color)
     {
@@ -17,7 +17,7 @@ public class TargetGenerator : MonoBehaviour
             return null;
         }
 
-        Vector3 spawnPosition = route.RoutePoints[_spawnPointNumber];
+        Vector3 spawnPosition = route.RoutePoints[_spawnPositionNumber];
         Target target = Instantiate(_targetPrefab);
         target.Init(spawnPosition, route, color);
 

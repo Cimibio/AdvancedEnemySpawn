@@ -9,7 +9,6 @@ public class EnemySpawner : Spawner<Enemy>
     {
         SpawnPoint spawnPoint = _pointGenerator.GetRandomSpawnPoint();
         Vector3 spawnPointPosition = spawnPoint.GetTransform.position;
-        //Vector3 moveDirection = spawnPoint.Target.transform.position;
         Color color = spawnPoint.Color;
         Target target = spawnPoint.Target;
 

@@ -9,15 +9,11 @@ public class RoutesGenerator : MonoBehaviour
     [SerializeField][Tooltip("Максимальное отклонение по оси Z от Генератора")] private float _zOffset = 15;
     [SerializeField] private float _yOffset = 1f;
 
-    private int number = 0;
-
-    //private List<Route> _routes = new List<Route>();
-
-    //public IReadOnlyList<Route> Routes => _routes;
+    private int _routeNumber = 0;
 
     public Route Generate()
     {
-        GameObject routeObject = new GameObject($"Route_{number}");
+        GameObject routeObject = new GameObject($"Route_{_routeNumber}");
         Route route = routeObject.AddComponent<Route>();
 
         int count = Random.Range(_minPoints, _maxPoints);
@@ -28,7 +24,7 @@ public class RoutesGenerator : MonoBehaviour
             route.Add(position);
         }
 
-        number++;
+        _routeNumber++;
 
         return route;
     }

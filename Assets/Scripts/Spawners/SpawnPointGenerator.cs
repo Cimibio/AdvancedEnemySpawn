@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +18,6 @@ public class SpawnPointGenerator : MonoBehaviour
 
     List<SpawnPoint> _spawnPoints = new List<SpawnPoint>();
 
-    public event Action<SpawnPoint> Created;
-
     private void Awake()
     {
         Generate();
@@ -34,35 +31,33 @@ public class SpawnPointGenerator : MonoBehaviour
             return null;
         }
 
-        int number = UnityEngine.Random.Range(0, _spawnPoints.Count);
+        int number = Random.Range(0, _spawnPoints.Count);
         return _spawnPoints[number];
     }
 
     private void Generate()
     {
-        int count = UnityEngine.Random.Range(_minPoints, _maxPoints);
+        int count = Random.Range(_minPoints, _maxPoints);
 
         for (int i = 0; i < count; i++)
         {
-            Color color = UnityEngine.Random.ColorHSV();
             SpawnPoint point = Instantiate(_spawnPointPrefab, transform);
 
+            Color color = Random.ColorHSV();
             Vector3 position = CalculateRandomPosition();
-            string type = "Spawn Point type #" + i;
 
             Target target = _targetGenerator.Spawn(color);
 
-            point.Init(position, type, color, target);
+            point.Init(position, color, target);
 
             _spawnPoints.Add(point);
-            Created?.Invoke(point);
         }
     }
 
     private Vector3 CalculateRandomPosition()
     {
-        float x = UnityEngine.Random.Range(transform.position.x - _xOffset, transform.position.x + _xOffset);
-        float z = UnityEngine.Random.Range(transform.position.z - _zOffset, transform.position.z + _zOffset);
+        float x = Random.Range(transform.position.x - _xOffset, transform.position.x + _xOffset);
+        float z = Random.Range(transform.position.z - _zOffset, transform.position.z + _zOffset);
         float y = transform.position.y + _yOffset;
 
         return new Vector3(x, y, z);

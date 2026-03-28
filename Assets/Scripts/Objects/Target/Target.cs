@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ColorChanger), typeof(Mover), typeof(Route))]
+[RequireComponent(typeof(Mover), typeof(Route))]
 public class Target : MonoBehaviour
 {
     private Mover _mover;
