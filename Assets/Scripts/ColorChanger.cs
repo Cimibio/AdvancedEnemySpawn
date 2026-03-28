@@ -1,22 +1,28 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class ColorChanger : MonoBehaviour
 {
-    [SerializeField] Color _defaultColor;
+    [SerializeField] Color _defaultColor = Color.white;
+    Renderer _renderer;
 
-    private void SetRandomColor(var cube)
+    private void OnEnable()
     {
-        if (cube.TryGetComponent(out Renderer renderer))
-        {
-            renderer.material.color = Random.ColorHSV();
-        }
+        _renderer = GetComponent<Renderer>();
+    }
+
+    public void SetColor(Color newColor)
+    {
+        _renderer.material.color  = newColor; 
+    }
+
+    private void SetRandomColor()
+    {
+        _renderer.material.color = Random.ColorHSV();
     }
 
     public void SetDefaultColor()
     {
-        if (cube.TryGetComponent(out Renderer renderer))
-        {
-            renderer.material.color = _defaultColor;
-        }
+        _renderer.material.color = _defaultColor;
     }
 }

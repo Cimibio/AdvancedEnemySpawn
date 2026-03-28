@@ -37,12 +37,11 @@ public class SpawnPointGenerator : MonoBehaviour
 
     private void Generate()
     {
-        Color color;
         int count = UnityEngine.Random.Range(_minPoints, _maxPoints);
 
         for (int i = 0; i < count; i++)
         {
-            color = UnityEngine.Random.ColorHSV();
+            Color color = UnityEngine.Random.ColorHSV();
             SpawnPoint point = Instantiate(_spawnPointPrefab, transform);
             point.transform.position = CalculateRandomPosition();
             point.SetColor(color);

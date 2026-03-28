@@ -1,7 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(ColorChanger))]
-public class Target : MonoBehaviour
+public class RoutesSpawner : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
