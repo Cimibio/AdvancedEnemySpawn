@@ -8,31 +8,28 @@ public class SpawnPointGenerator : MonoBehaviour
     [SerializeField] SpawnPoint _spawnPointPrefab;
     [SerializeField][Tooltip("Минимальное количество точек спавна")] private int _minPoints = 3;
     [SerializeField][Tooltip("Максимальное количество точек спавна")] private int _maxPoints = 5;
-    [SerializeField] private float _xOffset = 10;
-    [SerializeField] private float _zOffset = 10;
+    [SerializeField][Tooltip("Максимальное отклонение по оси X от Генератора")] private float _xOffset = 10;
+    [SerializeField][Tooltip("Максимальное отклонение по оси Z от Генератора")] private float _zOffset = 10;
     [SerializeField] private float _yOffset = 1f;
 
     [Header("Визуализация")]
     [SerializeField] private Color _gizmoColor = Color.green;
     [SerializeField] private float _gizmoRadius = 0.5f;
 
-    List<SpawnPoint> _spawnPoints;
+    List<SpawnPoint> _spawnPoints = new List<SpawnPoint>();
 
-    public event Action<Color> Created;
+    public event Action<SpawnPoint> Created;
 
     private void Awake()
     {
         Generate();
     }
 
-    public Transform GetRandomPoint()
+    public SpawnPoint GetRandomSpawnPoint()
     {
-        int count = transform.childCount;
+        int number = UnityEngine.Random.Range(0, _spawnPoints.Count - 1);
 
-        if (count == 0)
-            return transform;
-
-        return transform.GetChild(UnityEngine.Random.Range(0, count));
+        return _spawnPoints[number];
     }
 
     private void Generate()
@@ -44,10 +41,11 @@ public class SpawnPointGenerator : MonoBehaviour
             Color color = UnityEngine.Random.ColorHSV();
             SpawnPoint point = Instantiate(_spawnPointPrefab, transform);
             point.transform.position = CalculateRandomPosition();
-            point.SetColor(color);
+            point.Color = color;
+            point.Type = "Spawn Point type #" + i;
 
             _spawnPoints.Add(point);
-            Created?.Invoke(color);
+            Created?.Invoke(point);
         }
     }
 

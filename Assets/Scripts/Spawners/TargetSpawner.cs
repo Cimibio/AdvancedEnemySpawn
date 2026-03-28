@@ -1,28 +1,21 @@
-using Spawners;
 using UnityEngine;
 
-public class TargetSpawner : Spawner<Target>
+public class TargetSpawner : MonoBehaviour
 {
+    [SerializeField] private RoutesGenerator _routesGenerator;
     [SerializeField] private SpawnPointGenerator _pointGenerator;
     [SerializeField] private Target _targetPrefab;
 
-    private void OnEnable()
+    private void Spawn()
     {
-        _pointGenerator.Created += Spawn;
-    }
+        SpawnPoint spawnPoint = _pointGenerator.GetRandomSpawnPoint();
+        Color color = spawnPoint.Color;
+        Route route = _routesGenerator.GetRoute();
+        Vector3 firstRoutePoint = route.RoutePoints[0];
+        //Vector3 moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
 
-    protected override void Spawn(Color color)
-    {
-        Vector3 spawnPoint = _pointGenerator.GetRandomPoint().position;
         Target target = Instantiate(_targetPrefab);
-        Vector3 moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-
-        base.Spawn(target);
-        target.Init(spawnPoint, moveDirection);
+        target.Init(firstRoutePoint, route, color);
     }
 
-    private void OnEnemyFall(Target target)
-    {
-        ReleaseToPool(target);
-    }
 }

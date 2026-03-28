@@ -1,17 +1,49 @@
 using UnityEngine;
 
-[RequireComponent(typeof(ColorChanger))]
+[RequireComponent(typeof(ColorChanger), typeof(Mover), typeof(Route))]
 public class Target : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Mover _mover;
+    private Route _route;
+    private Renderer _renderer;
+    private Vector3 _direction;
+    private int _startNextRoutePointNumber = 0;
+    private int _currentNextRoutePointNumber;
+
+    public string Type { get; private set; }
+
+    private void Awake()
     {
-        
+        _mover = GetComponent<Mover>();
+        _renderer = GetComponent<Renderer>();
+        _route = GetComponent<Route>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        _direction = GetDirection();
+        _mover.SetDirection(_direction);
+    }
+
+    public void Init(Vector3 position, Route route, Color color)
+    {
+        transform.position = position;
+        _renderer.material.color = color;
+        _route = route;
+        _direction = _route.RoutePoints[_startNextRoutePointNumber].normalized;
+    }
+
+    private Vector3 GetDirection()
+    {
+        Vector3 targetPoint = _route.RoutePoints[_currentNextRoutePointNumber];
+
+        if ((transform.position - targetPoint).sqrMagnitude < 0.01f)
+        {
+            _currentNextRoutePointNumber = (_currentNextRoutePointNumber + 1) % _route.RoutePoints.Count;
+
+            targetPoint = _route.RoutePoints[_currentNextRoutePointNumber];
+        }
+
+        return (targetPoint - transform.position).normalized;
     }
 }

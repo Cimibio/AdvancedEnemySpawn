@@ -7,11 +7,14 @@ public class EnemySpawner : Spawner<Enemy>
 
     protected override void Spawn(Enemy enemy)
     {
-        Vector3 spawnPoint = _pointGenerator.GetRandomPoint().position;
+        SpawnPoint spawnPoint = _pointGenerator.GetRandomSpawnPoint();
+        Vector3 spawnPointPosition = spawnPoint.GetTransform.position;
         Vector3 moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        Color color = spawnPoint.Color;
+        Target target = spawnPoint.Target;
 
         base.Spawn(enemy);
-        enemy.Init(spawnPoint, moveDirection);
+        enemy.Init(spawnPointPosition, moveDirection, color);
         enemy.Falled += OnEnemyFall;
     }
 

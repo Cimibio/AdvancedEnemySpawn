@@ -388,7 +388,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnPointPrefab: {fileID: 8295822404948061295, guid: f8e8c75ba566c7b44867af26c8593a9b, type: 3}
   _minPoints: 3
-  _maxPoints: 8
+  _maxPoints: 5
   _xOffset: 10
   _zOffset: 10
   _yOffset: 1
