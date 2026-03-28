@@ -9,12 +9,12 @@ public class EnemySpawner : Spawner<Enemy>
     {
         SpawnPoint spawnPoint = _pointGenerator.GetRandomSpawnPoint();
         Vector3 spawnPointPosition = spawnPoint.GetTransform.position;
-        Vector3 moveDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+        //Vector3 moveDirection = spawnPoint.Target.transform.position;
         Color color = spawnPoint.Color;
         Target target = spawnPoint.Target;
 
         base.Spawn(enemy);
-        enemy.Init(spawnPointPosition, moveDirection, color);
+        enemy.Init(spawnPointPosition, target, color);
         enemy.Falled += OnEnemyFall;
     }
 

@@ -30,7 +30,13 @@ public class Target : MonoBehaviour
         transform.position = position;
         _renderer.material.color = color;
         _route = route;
-        _direction = _route.RoutePoints[_startNextRoutePointNumber].normalized;
+
+        _currentNextRoutePointNumber = _startNextRoutePointNumber + 1;
+
+        if (_route.RoutePoints.Count > 1)
+        {
+            _direction = (_route.RoutePoints[_currentNextRoutePointNumber] - position).normalized;
+        }
     }
 
     private Vector3 GetDirection()

@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
     private Mover _enemyMover;
     private EnemyFallDetector _fallDetector;
     private Renderer _renderer;
-    private string _type;
+    private Target _target;
 
     public event Action<Enemy> Falled;
 
@@ -19,17 +19,23 @@ public class Enemy : MonoBehaviour
         _fallDetector.OnFall += HandleFall;
     }
 
+    private void Update()
+    {
+        Vector3 direction = (_target.transform.position - transform.position).normalized;
+        _enemyMover.SetDirection(direction);
+    }
+
     private void OnDestroy()
     {
         if (_fallDetector != null)
             _fallDetector.OnFall -= HandleFall;
     }
 
-    public void Init(Vector3 position, Vector3 direction, Color color)
+    public void Init(Vector3 position, Target target, Color color)
     {
         transform.position = position;
         _renderer.material.color = color;
-        _enemyMover.SetDirection(direction);
+        _target = target;
     }
 
     private void HandleFall()
