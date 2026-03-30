@@ -5,14 +5,11 @@ public class RoutesGenerator : GeneratorBase<Route>
     [Header("Настройки маршрутов")]
     [SerializeField] private Route _routePrefab;
 
-    private Color _gizmoColor = Color.yellow;
-    private float _gizmoSize = 0.3f;
-
     public Route Generate()
     {
         Route route = Instantiate(_routePrefab);
 
-        int pointsCount = Random.Range(MinCount, MaxCount);
+        int pointsCount = Random.Range(MinCount, MaxCount + 1);
 
         for (int i = 0; i < pointsCount; i++)
         {
@@ -26,7 +23,7 @@ public class RoutesGenerator : GeneratorBase<Route>
 
     protected override void DrawItemGizmo(Route route)
     {
-        Gizmos.color = _gizmoColor;
+        Gizmos.color = GizmoColor;
 
         if (route != null && route.RoutePoints.Count > 0)
         {
@@ -34,7 +31,7 @@ public class RoutesGenerator : GeneratorBase<Route>
 
             foreach (var point in route.RoutePoints)
             {
-                Gizmos.DrawSphere(point, _gizmoSize);
+                Gizmos.DrawSphere(point, GizmoRadius);
                 Gizmos.DrawLine(prevPoint, point);
                 prevPoint = point;
             }

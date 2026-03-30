@@ -30,7 +30,7 @@ public class TargetGenerator : GeneratorBase<Target>
 
     protected override void DrawItemGizmo(Target target)
     {
-        Gizmos.color = _gizmoColor;
-        Gizmos.DrawSphere(target.transform.position, _gizmoSize);
+        Gizmos.color = GizmoColor;
+        Gizmos.DrawSphere(target.transform.position, GizmoRadius);
     }
 }

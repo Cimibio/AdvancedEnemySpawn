@@ -6,9 +6,6 @@ public class SpawnPointGenerator : GeneratorBase<SpawnPoint>
     [SerializeField] private SpawnPoint _spawnPointPrefab;
     [SerializeField] private TargetGenerator _targetGenerator;
 
-    private Color _gizmoColor = Color.blue;
-    private float _gizmoSize = 0.5f;
-
     private void Awake()
     {
         Generate();
@@ -28,11 +25,11 @@ public class SpawnPointGenerator : GeneratorBase<SpawnPoint>
     }
     protected override void DrawItemGizmo(SpawnPoint spawnPoint)
     {
-        Gizmos.color = _gizmoColor;
+        Gizmos.color = GizmoColor;
 
         if (spawnPoint != null)
         {
-            Gizmos.DrawSphere(spawnPoint.transform.position, _gizmoSize);
+            Gizmos.DrawSphere(spawnPoint.transform.position, GizmoRadius);
         }
     }
 

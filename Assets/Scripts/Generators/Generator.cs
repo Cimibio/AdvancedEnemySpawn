@@ -24,7 +24,7 @@ public abstract class Generator : MonoBehaviour
 
     protected int GetRandomCount()
     {
-        return Random.Range(MinCount, MaxCount);
+        return Random.Range(MinCount, MaxCount + 1);
     }
 
     protected virtual void OnDrawGizmos()
