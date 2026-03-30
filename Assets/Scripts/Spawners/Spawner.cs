@@ -25,8 +25,11 @@ namespace Spawners
                 collectionCheck: true,
                 defaultCapacity: _poolCapacity,
                 maxSize: _poolMaxSize
-            );
+            );            
+        }
 
+        private void Start()
+        {
             StartSpawning();
         }
 

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Mover), typeof(Route))]
+[RequireComponent(typeof(Mover), typeof(Route), typeof(Renderer))]
 public class Target : MonoBehaviour
 {
     private Mover _mover;
@@ -16,7 +16,6 @@ public class Target : MonoBehaviour
     {
         _mover = GetComponent<Mover>();
         _renderer = GetComponent<Renderer>();
-        _route = GetComponent<Route>();
     }
 
     private void Update()

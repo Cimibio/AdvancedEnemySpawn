@@ -3,17 +3,19 @@ using UnityEngine;
 
 public class EnemySpawner : Spawner<Enemy>
 {
-    [SerializeField] private SpawnPointGenerator _pointGenerator;
+    [SerializeField] private SpawnPointGenerator _spawnPointGenerator;
 
     protected override void Spawn(Enemy enemy)
     {
-        SpawnPoint spawnPoint = _pointGenerator.GetRandomSpawnPoint();
+        SpawnPoint spawnPoint = _spawnPointGenerator.GetRandomSpawnPoint();
         Vector3 spawnPointPosition = spawnPoint.GetTransform.position;
         Color color = spawnPoint.Color;
         Target target = spawnPoint.Target;
 
         base.Spawn(enemy);
-        enemy.Init(spawnPointPosition, target, color);
+        enemy.Init(spawnPointPosition, color);
+        enemy.SetTarget(target);
+
         enemy.Falled += OnEnemyFall;
     }
 

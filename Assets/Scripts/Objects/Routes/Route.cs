@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Route : MonoBehaviour
 {
-    private List<Vector3> _routesPoints = new List<Vector3>();
+    private List<Vector3> _routePoints = new List<Vector3>();
 
-    public IReadOnlyList<Vector3> RoutePoints => _routesPoints;
+    public IReadOnlyList<Vector3> RoutePoints => _routePoints;
 
     public void Add(Vector3 routePoint)
     {
-        _routesPoints.Add(routePoint);
+        _routePoints.Add(routePoint);
     }
 
     public void Remove(int index) 
     {
-        _routesPoints.RemoveAt(index); 
+        _routePoints.RemoveAt(index); 
     }
 }

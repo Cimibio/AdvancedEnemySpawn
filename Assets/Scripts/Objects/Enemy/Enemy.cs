@@ -21,7 +21,13 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        Vector3 direction = (_target.transform.position - transform.position).normalized;
+        Vector3 direction;
+
+        if (_target == null)
+            direction = _enemyMover.GetRandomDirection();
+        else
+            direction = (_target.transform.position - transform.position).normalized;
+
         _enemyMover.SetDirection(direction);
     }
 
@@ -31,10 +37,14 @@ public class Enemy : MonoBehaviour
             _fallDetector.OnFall -= HandleFall;
     }
 
-    public void Init(Vector3 position, Target target, Color color)
+    public void Init(Vector3 position, Color color)
     {
         transform.position = position;
         _renderer.material.color = color;
+    }
+
+    public void SetTarget(Target target)
+    {
         _target = target;
     }
 

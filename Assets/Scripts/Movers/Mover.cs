@@ -6,16 +6,21 @@ public class Mover : MonoBehaviour
 
     private Vector3 _currentDirection;
 
+    private void Update()
+    {
+        if (_currentDirection != Vector3.zero)
+            transform.Translate(_currentDirection * _speed * Time.deltaTime, Space.World);
+    }
+
     public void SetDirection(Vector3 direction)
     {
         _currentDirection = direction.normalized;
     }
 
-    private void Update()
+    public Vector3 GetRandomDirection()
     {
-        if (_currentDirection != Vector3.zero)
-        {
-            transform.Translate(_currentDirection * _speed * Time.deltaTime, Space.World);
-        }
+        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
+
+        return randomDirection;
     }
 }
