@@ -7,8 +7,6 @@ public class TargetGenerator : GeneratorBase<Target>
     [SerializeField] private Target _targetPrefab;
 
     private int _spawnPositionNumber = 0;
-    private Color _gizmoColor = Color.red;
-    private float _gizmoSize = 0.4f;
 
     public Target Generate(Color color)
     {
