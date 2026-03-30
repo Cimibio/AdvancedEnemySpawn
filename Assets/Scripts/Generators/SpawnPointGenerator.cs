@@ -59,7 +59,7 @@ public class SpawnPointGenerator : Generator
         {
             if (point != null)
             {
-                Gizmos.DrawSphere(point.GetTransform.position, _gizmoRadius * 0.8f);
+                Gizmos.DrawSphere(point.GetTransform.position, GizmoRadius * 0.8f);
 
                 if (point.Target != null)
                 {

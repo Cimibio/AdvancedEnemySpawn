@@ -13,8 +13,7 @@ public class EnemySpawner : Spawner<Enemy>
         Target target = spawnPoint.Target;
 
         base.Spawn(enemy);
-        enemy.Init(spawnPointPosition, color);
-        enemy.SetTarget(target);
+        enemy.Init(spawnPointPosition, color, target);
 
         enemy.Falled += OnEnemyFall;
     }

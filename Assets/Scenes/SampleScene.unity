@@ -151,13 +151,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e77e1f5c24806a43bb8b7e5da3f0fbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minCount: 3
-  _maxCount: 5
-  _xOffset: 20
-  _zOffset: 20
-  _yOffset: 1
-  _gizmoColor: {r: 1, g: 0.010156758, b: 0, a: 1}
-  _gizmoRadius: 0.5
+  MinCount: 3
+  MaxCount: 5
+  XOffset: 20
+  ZOffset: 20
+  YOffset: 1
+  GizmoColor: {r: 0, g: 0.0911839, b: 1, a: 1}
+  GizmoRadius: 0.5
+  _routePrefab: {fileID: 9058769357158242052, guid: 1ea6ad47f4299b64885c72bc7293ac4a, type: 3}
 --- !u!4 &417702224
 Transform:
   m_ObjectHideFlags: 0
@@ -452,13 +453,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa233112a515b646806d2903db517e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minCount: 3
-  _maxCount: 5
-  _xOffset: 10
-  _zOffset: 10
-  _yOffset: 1
-  _gizmoColor: {r: 0, g: 1, b: 0, a: 1}
-  _gizmoRadius: 0.5
+  MinCount: 3
+  MaxCount: 5
+  XOffset: 10
+  ZOffset: 10
+  YOffset: 1
+  GizmoColor: {r: 0, g: 1, b: 0, a: 1}
+  GizmoRadius: 0.5
   _spawnPointPrefab: {fileID: 1628312952694114188, guid: f8e8c75ba566c7b44867af26c8593a9b, type: 3}
   _targetGenerator: {fileID: 1539995544}
 --- !u!1 &1539995542
@@ -490,13 +491,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfb19382bcb2b6a4f94ea578cc75f7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _minCount: 3
-  _maxCount: 5
-  _xOffset: 15
-  _zOffset: 15
-  _yOffset: 1
-  _gizmoColor: {r: 0, g: 0.15577292, b: 1, a: 1}
-  _gizmoRadius: 0.5
+  MinCount: 3
+  MaxCount: 5
+  XOffset: 15
+  ZOffset: 15
+  YOffset: 1
+  GizmoColor: {r: 1, g: 0.13462627, b: 0, a: 1}
+  GizmoRadius: 0.5
   _routesGenerator: {fileID: 417702223}
   _targetPrefab: {fileID: 2382907661294074655, guid: 48201386db2abc04d9a51182924ad143, type: 3}
 --- !u!4 &1539995545

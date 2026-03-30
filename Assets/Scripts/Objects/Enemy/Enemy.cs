@@ -16,7 +16,7 @@ public class Enemy : MonoBehaviour
         _enemyMover = GetComponent<Mover>();
         _fallDetector = GetComponent<EnemyFallDetector>();
         _renderer = GetComponent<Renderer>();
-        _fallDetector.OnFall += HandleFall;
+        _fallDetector.Falled += HandleFall;
     }
 
     private void Update()
@@ -34,17 +34,13 @@ public class Enemy : MonoBehaviour
     private void OnDestroy()
     {
         if (_fallDetector != null)
-            _fallDetector.OnFall -= HandleFall;
+            _fallDetector.Falled -= HandleFall;
     }
 
-    public void Init(Vector3 position, Color color)
+    public void Init(Vector3 position, Color color, Target target)
     {
         transform.position = position;
         _renderer.material.color = color;
-    }
-
-    public void SetTarget(Target target)
-    {
         _target = target;
     }
 

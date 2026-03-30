@@ -19,8 +19,6 @@ public class Mover : MonoBehaviour
 
     public Vector3 GetRandomDirection()
     {
-        Vector3 randomDirection = new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
-
-        return randomDirection;
+        return new Vector3(Random.Range(-1f, 1f), 0, Random.Range(-1f, 1f)).normalized;
     }
 }

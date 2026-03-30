@@ -4,17 +4,16 @@ using UnityEngine;
 public class RoutesGenerator : Generator
 {
     [Header("Настройки маршрутов")]
+    [SerializeField] private Route _routePrefab;
 
-    private int _routeCounter = 0;
+    //private int _routeCounter = 0;
     private List<Route> _routes = new List<Route>();
 
     public Route Generate()
     {
-        GameObject routeObject = new GameObject($"Route_{_routeCounter++}");
-        routeObject.transform.SetParent(transform);
-        Route route = routeObject.AddComponent<Route>();
+        Route route = Instantiate(_routePrefab);
 
-        int pointsCount = Random.Range(_minCount, _maxCount);
+        int pointsCount = Random.Range(MinCount, MaxCount);
 
         for (int i = 0; i < pointsCount; i++)
         {
