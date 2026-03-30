@@ -1,17 +1,39 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnPointGenerator : Generator
+public class SpawnPointGenerator : GeneratorBase<SpawnPoint>
 {
     [Header("Настройки точек спавна")]
     [SerializeField] private SpawnPoint _spawnPointPrefab;
     [SerializeField] private TargetGenerator _targetGenerator;
 
-    private List<SpawnPoint> _spawnPoints = new List<SpawnPoint>();
+    private Color _gizmoColor = Color.blue;
+    private float _gizmoSize = 0.5f;
 
     private void Awake()
     {
         Generate();
+    }
+
+    public SpawnPoint GetRandomSpawnPoint()
+    {
+        if (_createdItems == null || _createdItems.Count == 0)
+        {
+            Debug.LogError("No spawn points available!");
+            return null;
+        }
+
+        int number = Random.Range(0, _createdItems.Count);
+
+        return _createdItems[number];
+    }
+    protected override void DrawItemGizmo(SpawnPoint spawnPoint)
+    {
+        Gizmos.color = _gizmoColor;
+
+        if (spawnPoint != null)
+        {
+            Gizmos.DrawSphere(spawnPoint.transform.position, _gizmoSize);
+        }
     }
 
     private void Generate()
@@ -24,50 +46,16 @@ public class SpawnPointGenerator : Generator
         }
     }
 
-    public void CreateSpawnPoint()
+    private void CreateSpawnPoint()
     {
+        SpawnPoint point = Instantiate(_spawnPointPrefab, transform);
         Color color = Random.ColorHSV();
         Vector3 position = CalculateRandomPosition();
 
         Target target = _targetGenerator.Generate(color);
 
-        SpawnPoint point = Instantiate(_spawnPointPrefab, transform);
         point.Init(position, color, target);
 
-        _spawnPoints.Add(point);
-    }
-
-    public SpawnPoint GetRandomSpawnPoint()
-    {
-        if (_spawnPoints == null || _spawnPoints.Count == 0)
-        {
-            Debug.LogError("No spawn points available!");
-            return null;
-        }
-
-        int number = Random.Range(0, _spawnPoints.Count);
-        return _spawnPoints[number];
-    }
-
-    protected override void OnDrawGizmos()
-    {
-        base.OnDrawGizmos();
-
-        Gizmos.color = Color.cyan;
-
-        foreach (var point in _spawnPoints)
-        {
-            if (point != null)
-            {
-                Gizmos.DrawSphere(point.GetTransform.position, GizmoRadius * 0.8f);
-
-                if (point.Target != null)
-                {
-                    Gizmos.color = Color.magenta;
-                    Gizmos.DrawLine(point.GetTransform.position, point.Target.transform.position);
-                    Gizmos.color = Color.cyan;
-                }
-            }
-        }
+        _createdItems.Add(point);
     }
 }

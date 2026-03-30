@@ -1,13 +1,12 @@
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RoutesGenerator : Generator
+public class RoutesGenerator : GeneratorBase<Route>
 {
     [Header("Настройки маршрутов")]
     [SerializeField] private Route _routePrefab;
 
-    //private int _routeCounter = 0;
-    private List<Route> _routes = new List<Route>();
+    private Color _gizmoColor = Color.yellow;
+    private float _gizmoSize = 0.3f;
 
     public Route Generate()
     {
@@ -21,28 +20,23 @@ public class RoutesGenerator : Generator
             route.Add(position);
         }
 
-        _routes.Add(route);
+        _createdItems.Add(route);
         return route;
     }
 
-    protected override void OnDrawGizmos()
+    protected override void DrawItemGizmo(Route route)
     {
-        base.OnDrawGizmos();
+        Gizmos.color = _gizmoColor;
 
-        Gizmos.color = Color.yellow;
-
-        foreach (var route in _routes)
+        if (route != null && route.RoutePoints.Count > 0)
         {
-            if (route != null && route.RoutePoints.Count > 0)
-            {
-                Vector3 prevPoint = route.RoutePoints[0];
+            Vector3 prevPoint = route.RoutePoints[0];
 
-                foreach (var point in route.RoutePoints)
-                {
-                    Gizmos.DrawSphere(point, 0.3f);
-                    Gizmos.DrawLine(prevPoint, point);
-                    prevPoint = point;
-                }
+            foreach (var point in route.RoutePoints)
+            {
+                Gizmos.DrawSphere(point, _gizmoSize);
+                Gizmos.DrawLine(prevPoint, point);
+                prevPoint = point;
             }
         }
     }

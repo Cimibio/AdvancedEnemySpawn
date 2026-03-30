@@ -1,17 +1,18 @@
 using UnityEngine;
-using System.Collections.Generic;
 
-public class TargetGenerator : Generator
+public class TargetGenerator : GeneratorBase<Target>
 {
     [Header("Настройки целей")]
     [SerializeField] private RoutesGenerator _routesGenerator;
     [SerializeField] private Target _targetPrefab;
 
     private int _spawnPositionNumber = 0;
-    private List<Target> _createdTargets = new List<Target>();
+    private Color _gizmoColor = Color.red;
+    private float _gizmoSize = 0.4f;
 
     public Target Generate(Color color)
     {
+        Target target = Instantiate(_targetPrefab);
         Route route = _routesGenerator.Generate();
 
         if (route.RoutePoints == null || route.RoutePoints.Count == 0)
@@ -21,24 +22,15 @@ public class TargetGenerator : Generator
         }
 
         Vector3 spawnPosition = route.RoutePoints[_spawnPositionNumber];
-        Target target = Instantiate(_targetPrefab);
         target.Init(spawnPosition, route, color);
 
+        _createdItems.Add(target);
         return target;
     }
 
-    protected override void OnDrawGizmos()
+    protected override void DrawItemGizmo(Target target)
     {
-        base.OnDrawGizmos();
-
-        Gizmos.color = Color.red;
-
-        foreach (var target in _createdTargets)
-        {
-            if (target != null)
-            {
-                Gizmos.DrawSphere(target.transform.position, 0.4f);
-            }
-        }
+        Gizmos.color = _gizmoColor;
+        Gizmos.DrawSphere(target.transform.position, _gizmoSize);
     }
 }

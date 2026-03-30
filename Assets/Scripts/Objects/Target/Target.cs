@@ -10,8 +10,6 @@ public class Target : MonoBehaviour
     private int _startNextRoutePointNumber = 0;
     private int _currentNextRoutePointNumber;
 
-    public string Type { get; private set; }
-
     private void Awake()
     {
         _mover = GetComponent<Mover>();
